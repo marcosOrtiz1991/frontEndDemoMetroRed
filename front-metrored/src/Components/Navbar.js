@@ -4,18 +4,18 @@ import {Link, useNavigate} from 'react-router-dom';
 export default function NavBar() {
     const navigate = useNavigate()
   return (
-    <Box sx={{flexGrow:1}}>
+    <Box >
         <AppBar position='static' color='transparent'>
             <Container>
                 <Toolbar>
-                    <Typography sx={{flexGrow:1}}>
-                    <Button  variant="contained" onClick={()=>navigate("/")}>
+                    <Button sx={{margin:2}} variant="outlined" onClick={()=>navigate("/")} >
                         Inicio
                     </Button> 
-                    </Typography>
-                    
-                    <Button  variant="contained" onClick={()=>navigate("/create")}>
-                        Nuevo
+                    <Button sx={{margin:2}} variant="outlined" onClick={()=>navigate("/listEspecialidades")}>
+                        Especialidades
+                    </Button>
+                    <Button sx={{margin:2}} variant="outlined" onClick={()=>navigate("/listEspecialidades")}>
+                        Doctores
                     </Button>
                 </Toolbar>
             </Container> 
