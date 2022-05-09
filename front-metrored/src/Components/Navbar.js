@@ -14,7 +14,7 @@ export default function NavBar() {
                     <Button sx={{margin:2}} variant="outlined" onClick={()=>navigate("/listEspecialidades")}>
                         Especialidades
                     </Button>
-                    <Button sx={{margin:2}} variant="outlined" onClick={()=>navigate("/listEspecialidades")}>
+                    <Button sx={{margin:2}} variant="outlined" onClick={()=>navigate("/listDoctores")}>
                         Doctores
                     </Button>
                 </Toolbar>
