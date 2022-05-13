@@ -1,6 +1,11 @@
 import { Box, AppBar, Container, Toolbar, Typography, Button } from "@mui/material";
 import {Link, useNavigate} from 'react-router-dom';
 
+/**
+ * Barra de navegación
+ * 
+ */
+
 export default function NavBar() {
     const navigate = useNavigate()
   return (
