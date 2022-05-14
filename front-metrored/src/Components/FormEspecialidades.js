@@ -17,14 +17,15 @@ export default function FormEspecialidades() {
 
     
 if(editing){
-  console.log(JSON.stringify(name))
-await fetch (`https://backendmetrored.herokuapp.com/update/${params.id}`,{
+  
+await fetch (`http://localhost:4000/update/${params.id}`,{
   method: "PUT",
   headers: {"Content-Type":"application/json"},
   body: JSON.stringify(name),
 })
 }else{
-   await fetch ('https://backendmetrored.herokuapp.com/create',{
+  console.log(JSON.stringify(name))
+   await fetch ('http://localhost:4000/create',{
     method: 'POST',
     body: JSON.stringify(name),
     headers: {"Content-Type":"application/json"}
@@ -40,7 +41,7 @@ await fetch (`https://backendmetrored.herokuapp.com/update/${params.id}`,{
   }
 
   const loadEspecialidad = async (id) =>{
-    const res = await fetch (`https://backendmetrored.herokuapp.com/listOne/${id}`)
+    const res = await fetch (`http://localhost:4000/listOne/${id}`)
     const data = await res.json()
     const nombre = data[0].esp_nombre;
 

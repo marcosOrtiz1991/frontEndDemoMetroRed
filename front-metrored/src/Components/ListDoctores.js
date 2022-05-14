@@ -9,13 +9,13 @@ export default function ListEspecialidades() {
   const [especilidad, setEspecilidad] = useState([])
 
   const cargarDoctor = async () => {
-    const response = await fetch('https://backendmetrored.herokuapp.com/doctor/list')
+    const response = await fetch('http://localhost:4000/doctor/list')
     const data = await response.json()
     setDoctor(data);
   }
 
   const loadEspecialidad = async (id) =>{
-    const res = await fetch (`https://backendmetrored.herokuapp.com/doctor/listOne/${id}`)
+    const res = await fetch (`http://localhost:4000/doctor/listOne/${id}`)
     const data = await res.json()
     const nombre = data[0].esp_nombre;
 
@@ -23,7 +23,7 @@ export default function ListEspecialidades() {
   };
 
   const eliminarDoctor = async (id) => {
-    const res = await fetch('https://backendmetrored.herokuapp.com/doctor/delete/' + id, {
+    const res = await fetch('http://localhost:4000/doctor/delete/' + id, {
       method: "DELETE",
 
     })
@@ -38,7 +38,7 @@ export default function ListEspecialidades() {
   return (
     <>
       <conteiner>
-        <Button sx={{ margin: 2 }} variant="outlined" onClick={() => navigate("/createEspecialidades")} >
+        <Button sx={{ margin: 2 }} variant="outlined" onClick={() => navigate("/createDoctores")} >
           Nuevo
         </Button>
       </conteiner>
@@ -63,7 +63,7 @@ export default function ListEspecialidades() {
                 <Typography style={{ color: "black" }}  > {doctor.doc_especialidad}</Typography>
               </div>
               <div>
-                <Button variant='contained' color='info' onClick={() => navigate("/editEspecialidades/"+doctor.doc_id)} >
+                <Button variant='contained' color='info' onClick={() => navigate("/editDoctores/"+doctor.doc_id)} >
                   Edit
                 </Button>
                 <Button variant='contained' color='warning' onClick={() => eliminarDoctor(doctor.doc_id)} style={{ marginLeft: "0.5rem" }}>
