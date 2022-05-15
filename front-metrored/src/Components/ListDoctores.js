@@ -11,13 +11,13 @@ export default function ListEspecialidades() {
 
   const cargarDoctor = async () => {
 
-    const response = await fetch('http://localhost:4000/doctor/list')
+    const response = await fetch('https://back-end-metrored.herokuapp.com/doctor/list')
     const data = await response.json()
     setDoctor(data);
 }
 
 const loadEspecialidad = async (id) => {
-  const res = await fetch(`http://localhost:4000/doctor/listOne/${id}`)
+  const res = await fetch(`https://back-end-metrored.herokuapp.com/doctor/listOne/${id}`)
   const data = await res.json()
   const nombre = data[0].esp_nombre;
 
@@ -25,7 +25,7 @@ const loadEspecialidad = async (id) => {
 };
 
 const eliminarDoctor = async (id) => {
-  const res = await fetch('http://localhost:4000/doctor/delete/' + id, {
+  const res = await fetch('https://back-end-metrored.herokuapp.com/doctor/delete/' + id, {
     method: "DELETE",
 
   })

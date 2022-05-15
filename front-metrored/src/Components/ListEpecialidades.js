@@ -9,7 +9,7 @@ export default function ListEspecialidades() {
 
   const cargarEspecialidades = async () => {
    // const endPoint = 'https://backendmetrored.herokuapp.com/list';
-    const endPoint = 'http://localhost:4000/list';
+    const endPoint = 'https://back-end-metrored.herokuapp.com/list';
     const response = await fetch(endPoint)
     const data = await response.json()
     setEspecialidad(data);
@@ -17,7 +17,7 @@ export default function ListEspecialidades() {
 
   const eliminarEspecialidad = async (id) => {
 // const endPoint = 'https://backendmetrored.herokuapp.com/delete';
-const endPoint = 'http://localhost:4000/delete/';
+const endPoint = 'https://back-end-metrored.herokuapp.com/delete/';
     
     const res = await fetch(endPoint + id, {
       method: "DELETE",
