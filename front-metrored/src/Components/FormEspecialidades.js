@@ -57,7 +57,7 @@ await fetch (`https://back-end-metrored.herokuapp.com/update/${params.id}`,{
   },[params.id])
 
   return (
-    <Grid container direction="colum" alignItems="center" justifyContent="center">
+    <Grid container  alignItems="center" justifyContent="center">
       <Grid item xs={3}>
         <Card sx={{ mt: 3 }}>
           <CardContent>

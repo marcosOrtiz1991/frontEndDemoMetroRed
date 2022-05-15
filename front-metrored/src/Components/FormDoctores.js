@@ -105,7 +105,7 @@ export default function FormDoctores() {
 
     return (
 
-        <Grid container direction="colum" alignItems="center" justifyContent="center">
+        <Grid container  alignItems="center" justifyContent="center">
             <Grid item xs={3}>
                 <Card sx={{ mt: 3 }}>
                     <CardContent>
@@ -156,8 +156,7 @@ export default function FormDoctores() {
                                 value={doctor.doc_especialidad}
                             >
                                 {especialidad.map(especialidad => (
-                                    console.log(especialidad),
-                                    <MenuItem value={especialidad.esp_id}>{especialidad.esp_nombre}</MenuItem>
+                                    <MenuItem key={especialidad.esp_id} value={especialidad.esp_id}>{especialidad.esp_nombre}</MenuItem>
                                 ))}
 
 

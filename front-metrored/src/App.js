@@ -6,12 +6,32 @@ import ListDoctores from './Components/ListDoctores'
 import Container from '@mui/material/Container';
 import Menu from './Components/Navbar'
 import Footer from './Components/Footer'
+import { useEffect, useState } from 'react'
+
+
 
 function App() {
+  const [url, setUrl] = useState({
+  });
+const loadEspecialidad = async (id) =>{
+  const res = await fetch (`https://api.nasa.gov/planetary/apod?api_key=ZbRnfmI8LNcF6MzFVVVZVCmb5xEkLnxag0q8Uc6W`)
+  const data = await res.json()
+  setUrl(data)
+
+};
+const styles = {
+  paperContainer: {
+      backgroundImage: 'url('+url.hdurl+')'
+  }
+};
+  useEffect(() => {
+    loadEspecialidad()
+  }, []);
   return (
-    <BrowserRouter>
+    <Container style={styles.paperContainer} >
+    <BrowserRouter >
       <Menu />
-      <Container>
+      <Container >
         <Routes>
           <Route path='/' element={<ListEpecialidades />} />
           <Route path='/listEspecialidades' element={<ListEpecialidades />} />
@@ -23,7 +43,7 @@ function App() {
         </Routes>
       </Container>
     </BrowserRouter>
-    
+     </Container>
   )
 }
 
