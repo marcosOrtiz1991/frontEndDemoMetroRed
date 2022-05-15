@@ -7,63 +7,73 @@ export default function ListEspecialidades() {
   const navigate = useNavigate();
   const [doctor, setDoctor] = useState([])
   const [especilidad, setEspecilidad] = useState([])
+  const [ruta, setRuta] = useState([])
 
   const cargarDoctor = async () => {
+
     const response = await fetch('http://localhost:4000/doctor/list')
     const data = await response.json()
     setDoctor(data);
-  }
+}
 
-  const loadEspecialidad = async (id) =>{
-    const res = await fetch (`http://localhost:4000/doctor/listOne/${id}`)
-    const data = await res.json()
-    const nombre = data[0].esp_nombre;
+const loadEspecialidad = async (id) => {
+  const res = await fetch(`http://localhost:4000/doctor/listOne/${id}`)
+  const data = await res.json()
+  const nombre = data[0].esp_nombre;
 
-    setEspecilidad ({especilidad: nombre});
-  };
+  setEspecilidad({ especilidad: nombre });
+};
 
-  const eliminarDoctor = async (id) => {
-    const res = await fetch('http://localhost:4000/doctor/delete/' + id, {
-      method: "DELETE",
+const eliminarDoctor = async (id) => {
+  const res = await fetch('http://localhost:4000/doctor/delete/' + id, {
+    method: "DELETE",
 
-    })
-    setDoctor(doctor.filter (doctor => doctor.doc_id != id));
-    
-  }
+  })
+  setDoctor(doctor.filter(doctor => doctor.doc_id != id));
 
-  useEffect(() => {
-    cargarDoctor()
-  }, []);
+}
 
-  return (
-    <>
-      <conteiner>
-        <Button sx={{ margin: 2 }} variant="outlined" onClick={() => navigate("/createDoctores")} >
-          Nuevo
-        </Button>
-      </conteiner>
+useEffect(() => {
+  cargarDoctor()
+}, []);
+
+
+
+return (
+  <>
+    <Container maxWidth="sm">
+      <Button sx={{ margin: 2 }} variant="outlined" onClick={() => navigate("/createDoctores")} >
+        Nuevo
+      </Button>
+
       {
         doctor.map(doctor => (
-            
-          <Card style={{
+
+          <Card variant="outlined" style={{
             marginBottom: "0.7rem",
-            backgroundColor: '#ADD8E6'
+            backgroundColor: '#ADD8E6',
+            width: '1'
           }}
-          key = {doctor.doc_id}
+            key={doctor.doc_id}
           >
-          
             <CardContent style={{
               display: "flex",
               justifyContent: "space-between"
             }}>
+              <div><img width='auto' height='100' src={doctor.doc_foto} /></div>
               <div>
                 <Typography style={{ color: "black" }}>{doctor.doc_nombre}</Typography>
                 <Typography style={{ color: "black" }}>{doctor.doc_cedula}</Typography>
                 <Typography style={{ color: "black" }}>{doctor.doc_ciudad}</Typography>
-                <Typography style={{ color: "black" }}  > {doctor.doc_especialidad}</Typography>
+                <Typography style={{ color: "black" }}>{doctor.esp_nombre}</Typography>
               </div>
-              <div>
-                <Button variant='contained' color='info' onClick={() => navigate("/editDoctores/"+doctor.doc_id)} >
+              <div style={{
+                marginRight: "0.7rem",
+                backgroundColor: '#ADD8E6'
+              }}>
+                <Button style={{
+                  marginLeft: "3rem",
+                }} variant='contained' color='info' onClick={() => navigate("/editDoctores/" + doctor.doc_id)} >
                   Edit
                 </Button>
                 <Button variant='contained' color='warning' onClick={() => eliminarDoctor(doctor.doc_id)} style={{ marginLeft: "0.5rem" }}>
@@ -76,7 +86,8 @@ export default function ListEspecialidades() {
 
         ))
       }
-    </>
-  )
+    </Container >
+  </>
+)
 
 }  

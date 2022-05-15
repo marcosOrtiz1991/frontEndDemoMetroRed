@@ -13,9 +13,6 @@ export default function NavBar() {
         <AppBar position='static' color='transparent'>
             <Container>
                 <Toolbar>
-                    <Button sx={{margin:2}} variant="outlined" onClick={()=>navigate("/")} >
-                        Inicio
-                    </Button> 
                     <Button sx={{margin:2}} variant="outlined" onClick={()=>navigate("/listEspecialidades")}>
                         Especialidades
                     </Button>

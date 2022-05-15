@@ -1,17 +1,21 @@
-import { Box, Card, Container, Toolbar, Typography, Button, Grid, CardContent, TextField } from "@mui/material";
+import { Box, Card, Container, Toolbar, Typography, Button, Grid, CardContent, TextField, Input, unstable_composeClasses } from "@mui/material";
 import { Link, useNavigate, use, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react'
 
 export default function FormDoctores() {
 
     const [doctor, setDoctor] = useState({
-        doc_nombre:"",
-        doc_cedula:'',
-        doc_foto:'',
-        doc_ciudad:'',
-        doc_especialidad:'',
+        doc_nombre: '',
+        doc_cedula: '',
+        doc_foto: '',
+        doc_ciudad: '',
+        doc_especialidad: '',
 
     });
+
+    const [url, setUrl] = useState({
+        url:''
+    })
 
     const [editing, setEditing] = useState(false);
 
@@ -42,7 +46,7 @@ export default function FormDoctores() {
     };
 
     const addDatos = e => {
-        console.log (e.target.name, e.target.value)
+        console.log(e.target.name, e.target.value)
         setDoctor({ ...doctor, [e.target.name]: e.target.value });
 
     }
@@ -53,23 +57,41 @@ export default function FormDoctores() {
         const nombre = data.doc_nombre;
         console.log(data)
         setDoctor({
-            value:'',
-             doc_nombre:data.doc_nombre,
-             doc_cedula:data.doc_cedula,
-             doc_foto:data.doc_foto,
-             doc_ciudad:data.doc_ciudad,
-             doc_especialidad:data.doc_especialidad
-            
-            });
+            value: '',
+            doc_nombre: data.doc_nombre,
+            doc_cedula: data.doc_cedula,
+            doc_foto: data.doc_foto,
+            doc_ciudad: data.doc_ciudad,
+            doc_especialidad: data.doc_especialidad
+
+        });
         setEditing(true)
     };
 
     useEffect(() => {
+        console.log('al inicio');
         if (params.id) {
             loadDoctor(params.id)
         }
 
     }, [params.id])
+
+    const convertirBase64 = (archivos) => {
+        Array.from(archivos).forEach(archivo => {
+            var reader = new FileReader();
+            reader.readAsDataURL(archivo);
+            reader.onload = function () {
+                var base64 = reader.result;
+                setDoctor({
+                    ...doctor,doc_foto: base64,
+                });
+
+                setUrl({
+                    url: base64,
+                });
+            }
+        })
+    }
 
     return (
         <Grid container direction="colum" alignItems="center" justifyContent="center">
@@ -95,8 +117,8 @@ export default function FormDoctores() {
                                 name="doc_cedula"
                                 label='Cédula'
                                 onChange={addDatos}
-                                value= {doctor.doc_cedula}
-                                
+                                value={doctor.doc_cedula}
+
                                 sx={{
                                     display: 'blok',
                                     margin: '.5rem 0'
@@ -107,7 +129,7 @@ export default function FormDoctores() {
                                 name="doc_ciudad"
                                 label='Ciudad'
                                 onChange={addDatos}
-                                value= {doctor.doc_ciudad}
+                                value={doctor.doc_ciudad}
                                 sx={{
                                     display: 'blok',
                                     margin: '.5rem 0'
@@ -125,6 +147,14 @@ export default function FormDoctores() {
                                     margin: '.5rem 0'
                                 }}
                             />
+
+                            <TextField
+                                name="doc_foto"
+                                type="file"
+                                label="Foto"
+                                onChange={(e) => convertirBase64(e.target.files)}
+                            />
+
                             <Button type="submit">
                                 Guardar
                             </Button>

@@ -33,11 +33,11 @@ const endPoint = 'http://localhost:4000/delete/';
 
   return (
     <>
-      <conteiner>
+      <Container  maxWidth="sm">
         <Button sx={{ margin: 2 }} variant="outlined" onClick={() => navigate("/createEspecialidades")} >
           Nuevo
         </Button>
-      </conteiner>
+      
       {
         especialidad.map(especialidad => (
           <Card style={{
@@ -68,6 +68,7 @@ const endPoint = 'http://localhost:4000/delete/';
 
         ))
       }
+      </Container>
     </>
   )
 
