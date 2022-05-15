@@ -68,8 +68,12 @@ export default function FormDoctores() {
         setEditing(true)
     };
 
+    const loadEspecialidad = async () => {
+        
+    }
+
     useEffect(() => {
-        console.log('al inicio');
+        loadEspecialidad();
         if (params.id) {
             loadDoctor(params.id)
         }
